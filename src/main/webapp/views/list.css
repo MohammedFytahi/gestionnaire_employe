@@ -1,0 +1,128 @@
+/*
+  Table Responsive
+  ===================
+  Author: https://github.com/pablorgarcia
+ */
+
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color: #A7A1AE;
+    background-color: #1F2739;
+    margin: 0; /* Remove default margin */
+    padding: 20px; /* Add padding to body */
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: 300;
+    line-height: 1em;
+    text-align: center;
+    color: #4DC3FA;
+    margin-bottom: 20px; /* Add margin below title */
+}
+
+h2 {
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+    display: block;
+    line-height: 1em;
+    padding-bottom: 2em;
+    color: #FB667A;
+}
+
+h2 a {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #FB667A;
+    text-decoration: none;
+}
+
+.blue { color: #185875; }
+.yellow { color: #FFF842; }
+
+.container {
+    text-align: left;
+    overflow: hidden;
+    width: 90%; /* Adjust width to fit better */
+    max-width: 1200px; /* Set max width for larger screens */
+    margin: 0 auto;
+    padding: 20px; /* Add padding to container */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #2C3446; /* Container background color */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.container th, .container td {
+    padding: 15px; /* Increase padding for cells */
+    border: 1px solid #4DC3FA; /* Border color */
+}
+
+.container th {
+    background-color: #1F2739; /* Header background color */
+    color: #4DC3FA; /* Header text color */
+}
+
+.container td {
+    color: #A7A1AE; /* Default text color */
+}
+
+.container tr {
+    transition: background-color 0.3s ease; /* Smooth transition for row hover */
+}
+
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+    background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+    background-color: #2C3446;
+}
+
+.container tr:hover {
+    background-color: #464A52; /* Hover color for rows */
+}
+
+.container td:first-child {
+    color: #FB667A; /* Special color for the first column */
+}
+
+@media (max-width: 800px) {
+    .container td:nth-child(4),
+    .container th:nth-child(4) {
+        display: none; /* Hide the 'Average' column on smaller screens */
+    }
+
+
+    .btn {
+        display: inline-block; /* Affichage en ligne */
+        padding: 10px 20px; /* Rembourrage pour le bouton */
+        margin: 10px 0; /* Marge autour du bouton */
+        background-color: #4DC3FA; /* Couleur de fond */
+        color: #ffffff; /* Couleur du texte */
+        font-size: 1em; /* Taille de police */
+        font-weight: bold; /* Épaisseur du texte */
+        text-decoration: none; /* Pas de soulignement */
+        border-radius: 5px; /* Coins arrondis */
+        transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour les effets */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de profondeur */
+    }
+
+    .btn:hover {
+        background-color: #FB667A; /* Couleur de fond au survol */
+        transform: translateY(-2px); /* Légère élévation au survol */
+    }
+
+    .btn:active {
+        transform: translateY(1px); /* Rétrogradation lors du clic */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Réduction de l'ombre lors du clic */
+    }
+
+}
