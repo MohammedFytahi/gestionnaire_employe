@@ -30,7 +30,11 @@
       <td>${employe.poste}</td>
       <td>
         <a class="btn" href="views/updateEmploye.jsp?id=${employe.id}">Update</a>
-        <a class="btn" href="views/deleteEmploye.jsp?id=${employe.id}" onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
+        <form action="${pageContext.request.contextPath}/employes" method="post" style="display:inline;">
+          <input type="hidden" name="action" value="supprimer">
+          <input type="hidden" name="id" value="${employe.id}">
+          <input type="submit" value="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">
+        </form>
       </td>
     </tr>
   </c:forEach>
