@@ -60,9 +60,9 @@ public class EmployeDAO {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            Employe employe = session.get(Employe.class, id); // Trouver l'employé par ID
+            Employe employe = session.get(Employe.class, id);
             if (employe != null) {
-                session.delete(employe); // Supprimer l'employé
+                session.delete(employe);
             }
             transaction.commit();
         } catch (Exception e) {
@@ -71,5 +71,26 @@ public class EmployeDAO {
             }
             e.printStackTrace();
         }
+    }
+
+    public Employe getEmployeById(int id) {
+        Transaction transaction = null;
+        Employe employe = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            // Commencer la transaction
+            transaction = session.beginTransaction();
+
+            // Récupérer l'employé par son ID
+            employe = session.get(Employe.class, id);
+
+            // Valider la transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return employe;
     }
 }

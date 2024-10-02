@@ -23,4 +23,8 @@ public class EmployeService {
         employeDAO.supprimerEmploye(id);
     }
 
+    public Employe getEmployeById(int id) {
+        return employeDAO.getEmployeById(id);
+    }
+
 }

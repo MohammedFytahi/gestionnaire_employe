@@ -29,7 +29,8 @@
       <td>${employe.departement}</td>
       <td>${employe.poste}</td>
       <td>
-        <a class="btn" href="views/updateEmploye.jsp?id=${employe.id}">Update</a>
+        <a class="btn" href="${pageContext.request.contextPath}/employes?action=modifier&id=${employe.id}">Update</a>
+
         <form action="${pageContext.request.contextPath}/employes" method="post" style="display:inline;">
           <input type="hidden" name="action" value="supprimer">
           <input type="hidden" name="id" value="${employe.id}">
