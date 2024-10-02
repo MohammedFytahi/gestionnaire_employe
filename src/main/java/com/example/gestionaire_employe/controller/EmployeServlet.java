@@ -16,7 +16,6 @@ public class EmployeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         List<Employe> employes = employeService.getAllEmployes();
         request.setAttribute("employes", employes);
         request.getRequestDispatcher("/views/listeEmployes.jsp").forward(request, response);
@@ -24,18 +23,42 @@ public class EmployeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action"); // Obtenir l'action
 
-        String nom = request.getParameter("nom");
-        String email = request.getParameter("email");
-        String telephone = request.getParameter("telephone");
-        String departement = request.getParameter("departement");
-        String poste = request.getParameter("poste");
+        if ("ajouter".equals(action)) {
+            String nom = request.getParameter("nom");
+            String email = request.getParameter("email");
+            String telephone = request.getParameter("telephone");
+            String departement = request.getParameter("departement");
+            String poste = request.getParameter("poste");
 
-        // Create and save the new employee
-        Employe employe = new Employe(0, nom, email, telephone, departement, poste);
-        employeService.ajouterEmploye(employe);
+            // Créer et enregistrer le nouvel employé
+            Employe employe = new Employe(0, nom, email, telephone, departement, poste);
+            employeService.ajouterEmploye(employe);
 
-        // Redirect to the list of employees after successful addition
-        response.sendRedirect(request.getContextPath() + "/employes");
+            // Rediriger vers la liste des employés après l'ajout réussi
+            response.sendRedirect(request.getContextPath() + "/employes");
+        } else if ("mettreAJour".equals(action)) {
+            // Mettre à jour l'employé
+            int id = Integer.parseInt(request.getParameter("id"));
+            String nom = request.getParameter("nom");
+            String email = request.getParameter("email");
+            String telephone = request.getParameter("telephone");
+            String departement = request.getParameter("departement");
+            String poste = request.getParameter("poste");
+
+            Employe employe = new Employe(id, nom, email, telephone, departement, poste);
+            employeService.mettreAJourEmploye(employe);
+
+            // Rediriger vers la liste des employés après la mise à jour réussie
+            response.sendRedirect(request.getContextPath() + "/employes");
+        } else if ("supprimer".equals(action)) {
+            // Supprimer l'employé
+            int id = Integer.parseInt(request.getParameter("id"));
+            employeService.supprimerEmploye(id);
+
+            // Rediriger vers la liste des employés après la suppression réussie
+            response.sendRedirect(request.getContextPath() + "/employes");
+        }
     }
 }

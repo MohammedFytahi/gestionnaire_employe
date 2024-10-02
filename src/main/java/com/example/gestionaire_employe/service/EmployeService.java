@@ -15,4 +15,12 @@ public class EmployeService {
     public List<Employe> getAllEmployes() {
         return employeDAO.getAllEmployes();
     }
+    public void mettreAJourEmploye(Employe employe) {
+        employeDAO.mettreAJourEmploye(employe);
+    }
+
+    public void supprimerEmploye(int id) {
+        employeDAO.supprimerEmploye(id);
+    }
+
 }

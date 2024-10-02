@@ -41,4 +41,35 @@ public class EmployeDAO {
             e.printStackTrace();
         }
     }
+
+    public void mettreAJourEmploye(Employe employe) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.update(employe); // Met à jour l'employé existant
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
+
+    public void supprimerEmploye(int id) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            Employe employe = session.get(Employe.class, id); // Trouver l'employé par ID
+            if (employe != null) {
+                session.delete(employe); // Supprimer l'employé
+            }
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+    }
 }

@@ -6,31 +6,48 @@
     <link rel="stylesheet" type="text/css" href="form.css">
 </head>
 <body>
-<h2>Ajouter un Employé</h2>
+<h2 style="text-align:center;">Ajouter un Employé</h2>
 
 <% String erreur = (String) request.getAttribute("erreur"); %>
 <% if (erreur != null) { %>
-<p style="color:red;"><%= erreur %></p>
+<p style="color:red; text-align:center;"><%= erreur %></p>
 <% } %>
 
 <form action="${pageContext.request.contextPath}/employes" method="post">
+    <input type="hidden" name="action" value="ajouter">
 
-    <label for="nom">Nom:</label>
-    <input type="text" id="nom" name="nom" required><br>
+    <div>
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br>
+    </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br>
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+    </div>
 
-    <label for="telephone">Téléphone:</label>
-    <input type="text" id="telephone" name="telephone" required><br>
+    <div>
+        <label for="telephone">Téléphone:</label>
+        <input type="text" id="telephone" name="telephone" required><br>
+    </div>
 
-    <label for="departement">Département:</label>
-    <input type="text" id="departement" name="departement" required><br>
+    <div>
+        <label for="departement">Département:</label>
+        <input type="text" id="departement" name="departement" required><br>
+    </div>
 
-    <label for="poste">Poste:</label>
-    <input type="text" id="poste" name="poste" required><br>
+    <div>
+        <label for="poste">Poste:</label>
+        <input type="text" id="poste" name="poste" required><br>
+    </div>
 
-    <input type="submit" value="Ajouter">
+    <div style="text-align:center;">
+        <input type="submit" value="Ajouter">
+    </div>
 </form>
+
+<p style="text-align:center;">
+    <a href="${pageContext.request.contextPath}/employes">Retourner à la liste des employés</a>
+</p>
 </body>
 </html>
