@@ -16,6 +16,48 @@ body {
     margin: 0; /* Remove default margin */
     padding: 20px; /* Add padding to body */
 }
+.filter-container {
+    display: flex; /* Use flexbox to align items */
+    justify-content: space-between; /* Space between the search and filter forms */
+    margin-bottom: 20px; /* Margin below the filter container */
+}
+
+.search-form, .filter-form {
+    display: flex; /* Align items in a row */
+    align-items: center; /* Center items vertically */
+}
+
+.search-form input[type="text"],
+.filter-form select {
+    padding: 10px; /* Increase padding */
+    margin-right: 10px; /* Space between input fields */
+    border: 1px solid #4DC3FA; /* Border color */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #2C3446; /* Background color */
+    color: #A7A1AE; /* Text color */
+}
+
+.search-form input[type="submit"],
+.filter-form input[type="submit"] {
+    padding: 10px 20px; /* Increase padding for buttons */
+    background-color: #4DC3FA; /* Button background color */
+    color: #ffffff; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.search-form input[type="submit"]:hover,
+.filter-form input[type="submit"]:hover {
+    background-color: #FB667A; /* Change background color on hover */
+}
+
+.filter-form label {
+    margin-right: 10px; /* Space between label and select */
+    color: #A7A1AE; /* Label text color */
+}
+
 
 h1 {
     font-size: 2.5em;
@@ -124,5 +166,7 @@ h2 a {
         transform: translateY(1px); /* Rétrogradation lors du clic */
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Réduction de l'ombre lors du clic */
     }
+
+
 
 }

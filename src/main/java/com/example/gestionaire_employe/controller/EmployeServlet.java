@@ -18,25 +18,39 @@ public class EmployeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         String recherche = request.getParameter("recherche");
+        String departement = request.getParameter("departement");
+
+        List<Employe> employes;
+
 
         if ("modifier".equals(action)) {
             int id = Integer.parseInt(request.getParameter("id"));
             Employe employe = employeService.getEmployeById(id);
             request.setAttribute("employe", employe);
             request.getRequestDispatcher("/views/updateEmploye.jsp").forward(request, response);
-        } else {
-            List<Employe> employes;
-
-            // If search parameter exists, perform the search
-            if (recherche != null && !recherche.isEmpty()) {
-                employes = employeService.rechercherEmployesParNom(recherche);
-            } else {
-                employes = employeService.getAllEmployes();
-            }
-
-            request.setAttribute("employes", employes);
-            request.getRequestDispatcher("/views/listeEmployes.jsp").forward(request, response);
+            return;
         }
+
+
+        if (recherche != null && !recherche.isEmpty()) {
+            if (departement != null && !departement.isEmpty()) {
+                employes = employeService.rechercherEmployesParNomEtDepartement(recherche, departement);
+            } else {
+                employes = employeService.rechercherEmployesParNom(recherche);
+            }
+        } else if (departement != null && !departement.isEmpty()) {
+            employes = employeService.getEmployesByDepartement(departement);
+        } else {
+            employes = employeService.getAllEmployes();
+        }
+
+
+        List<String> departements = employeService.getAllDepartements();
+        request.setAttribute("departements", departements);
+
+
+        request.setAttribute("employes", employes);
+        request.getRequestDispatcher("/views/listeEmployes.jsp").forward(request, response);
     }
 
 

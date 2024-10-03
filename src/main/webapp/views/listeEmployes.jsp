@@ -2,15 +2,30 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="views/list.css">
+  <link rel="stylesheet" type="text/css" href="views/css/list.css">
   <title>List of Employees</title>
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/employes" method="get" style="margin-bottom: 20px;">
-  <input type="text" name="recherche" placeholder="Rechercher par nom" value="${param.recherche}" />
-  <input type="submit" value="Rechercher" />
-</form>
+
+<div class="filter-container">
+  <form action="${pageContext.request.contextPath}/employes" method="get" class="search-form">
+    <input type="text" name="recherche" placeholder="Rechercher par nom" value="${param.recherche}" />
+    <input type="submit" value="Rechercher" />
+  </form>
+
+  <form action="${pageContext.request.contextPath}/employes" method="get" class="filter-form">
+    <label for="departement"> </label>
+    <select name="departement" id="departement">
+      <option value="">Tous les départements</option>
+      <c:forEach var="departement" items="${departements}">
+        <option value="${departement}">${departement}</option>
+      </c:forEach>
+    </select>
+    <input type="submit" value="Filtrer" />
+  </form>
+</div>
+
 
 <table class="container">
   <thead>
@@ -35,7 +50,6 @@
       <td>${employe.poste}</td>
       <td>
         <a class="btn" href="${pageContext.request.contextPath}/employes?action=modifier&id=${employe.id}">Update</a>
-
         <form action="${pageContext.request.contextPath}/employes" method="post" style="display:inline;">
           <input type="hidden" name="action" value="supprimer">
           <input type="hidden" name="id" value="${employe.id}">

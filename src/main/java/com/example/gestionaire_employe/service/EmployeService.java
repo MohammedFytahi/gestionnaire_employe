@@ -31,4 +31,17 @@ public class EmployeService {
         return employeDAO.rechercherEmployesParNom(nom);
     }
 
+    public List<String> getAllDepartements() {
+        return employeDAO.getAllDepartements();
+    }
+
+
+    public List<Employe> rechercherEmployesParNomEtDepartement(String nom, String departement) {
+        return employeDAO.rechercherEmployesParNomEtDepartement(nom, departement);
+    }
+
+    public List<Employe> getEmployesByDepartement(String departement) {
+        return employeDAO.getEmployesByDepartement(departement);
+    }
+
 }
