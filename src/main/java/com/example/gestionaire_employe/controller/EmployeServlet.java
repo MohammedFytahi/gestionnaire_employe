@@ -17,22 +17,23 @@ public class EmployeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        String recherche = request.getParameter("recherche");
 
         if ("modifier".equals(action)) {
-
             int id = Integer.parseInt(request.getParameter("id"));
-
-
             Employe employe = employeService.getEmployeById(id);
-
-
             request.setAttribute("employe", employe);
-
-
             request.getRequestDispatcher("/views/updateEmploye.jsp").forward(request, response);
         } else {
+            List<Employe> employes;
 
-            List<Employe> employes = employeService.getAllEmployes();
+            // If search parameter exists, perform the search
+            if (recherche != null && !recherche.isEmpty()) {
+                employes = employeService.rechercherEmployesParNom(recherche);
+            } else {
+                employes = employeService.getAllEmployes();
+            }
+
             request.setAttribute("employes", employes);
             request.getRequestDispatcher("/views/listeEmployes.jsp").forward(request, response);
         }

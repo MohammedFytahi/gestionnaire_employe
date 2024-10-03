@@ -27,4 +27,8 @@ public class EmployeService {
         return employeDAO.getEmployeById(id);
     }
 
+    public List<Employe> rechercherEmployesParNom(String nom) {
+        return employeDAO.rechercherEmployesParNom(nom);
+    }
+
 }

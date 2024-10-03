@@ -4,6 +4,7 @@ import com.example.gestionaire_employe.model.Employe;
 import com.example.gestionaire_employe.config.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -77,13 +78,12 @@ public class EmployeDAO {
         Transaction transaction = null;
         Employe employe = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            // Commencer la transaction
+
             transaction = session.beginTransaction();
 
-            // Récupérer l'employé par son ID
             employe = session.get(Employe.class, id);
 
-            // Valider la transaction
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -92,5 +92,27 @@ public class EmployeDAO {
             e.printStackTrace();
         }
         return employe;
+    }
+
+
+    public List<Employe> rechercherEmployesParNom(String nom) {
+        Transaction transaction = null;
+        List<Employe> employes = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            String hql = "FROM Employe WHERE nom LIKE :nom";
+            Query<Employe> query = session.createQuery(hql, Employe.class);
+            query.setParameter("nom", "%" + nom + "%");
+            employes = query.list();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return employes;
     }
 }

@@ -7,6 +7,11 @@
 </head>
 <body>
 
+<form action="${pageContext.request.contextPath}/employes" method="get" style="margin-bottom: 20px;">
+  <input type="text" name="recherche" placeholder="Rechercher par nom" value="${param.recherche}" />
+  <input type="submit" value="Rechercher" />
+</form>
+
 <table class="container">
   <thead>
   <tr>
@@ -16,7 +21,7 @@
     <th><h1>Telephone</h1></th>
     <th><h1>Department</h1></th>
     <th><h1>Position</h1></th>
-    <th><h1>Actions</h1></th> <!-- Nouvelle colonne pour les actions -->
+    <th><h1>Actions</h1></th>
   </tr>
   </thead>
   <tbody>
