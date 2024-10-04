@@ -13,12 +13,12 @@
 <p style="color:red; text-align:center;"><%= erreur %></p>
 <% } %>
 
-<form action="${pageContext.request.contextPath}/employes" method="post">
+<form action="${pageContext.request.contextPath}/employes" method="post" onsubmit="return validerFormulaire()">
     <input type="hidden" name="action" value="ajouter">
 
     <div>
         <label for="nom">Nom:</label>
-        <input type="text" id="nom" name="nom" required><br>
+        <input type="text" id="nom" name="nom" required pattern="[A-Za-z\s]+" title="Le nom doit uniquement contenir des lettres."><br>
     </div>
 
     <div>
@@ -28,7 +28,7 @@
 
     <div>
         <label for="telephone">Téléphone:</label>
-        <input type="text" id="telephone" name="telephone" required><br>
+        <input type="text" id="telephone" name="telephone" required pattern="\+?\d{10,15}" title="Entrez un numéro de téléphone valide (10 à 15 chiffres)."><br>
     </div>
 
     <div>
@@ -50,4 +50,31 @@
     <a href="${pageContext.request.contextPath}/employes">Retourner à la liste des employés</a>
 </p>
 </body>
+<script>
+    function validerFormulaire() {
+        var nom = document.getElementById("nom").value;
+        var email = document.getElementById("email").value;
+        var telephone = document.getElementById("telephone").value;
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        var telephonePattern = /^\+?\d{10,15}$/;
+
+        if (nom === "" || email === "" || telephone === "") {
+            alert("Tous les champs sont obligatoires.");
+            return false;
+        }
+
+        if (!emailPattern.test(email)) {
+            alert("Veuillez entrer un email valide.");
+            return false;
+        }
+
+        if (!telephonePattern.test(telephone)) {
+            alert("Veuillez entrer un numéro de téléphone valide (10 à 15 chiffres).");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 </html>

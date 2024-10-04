@@ -17,7 +17,7 @@ public class TestHibernate {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            HibernateUtil.shutdown(); // Fermer la SessionFactory à la fin
+            HibernateUtil.shutdown();
         }
     }
 }

@@ -66,11 +66,34 @@ public class EmployeServlet extends HttpServlet {
             String poste = request.getParameter("poste");
 
 
+            if (nom == null || nom.isEmpty() || email == null || email.isEmpty() ||
+                    telephone == null || telephone.isEmpty() || departement == null ||
+                    departement.isEmpty() || poste == null || poste.isEmpty()) {
+                request.setAttribute("erreur", "Tous les champs sont obligatoires.");
+                request.getRequestDispatcher("/views/ajouterEmploye.jsp").forward(request, response);
+                return;
+            }
+
+
+            if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+                request.setAttribute("erreur", "L'email n'est pas valide.");
+                request.getRequestDispatcher("/views/ajouterEmploye.jsp").forward(request, response);
+                return;
+            }
+
+
+            if (!telephone.matches("^\\+?\\d{10,15}$")) {
+                request.setAttribute("erreur", "Le numéro de téléphone n'est pas valide.");
+                request.getRequestDispatcher("/views/ajouterEmploye.jsp").forward(request, response);
+                return;
+            }
+
+
             Employe employe = new Employe(0, nom, email, telephone, departement, poste);
             employeService.ajouterEmploye(employe);
 
-
             response.sendRedirect(request.getContextPath() + "/employes");
+
         } else if ("mettreAJour".equals(action)) {
             String idStr = request.getParameter("id");
             if (idStr != null && !idStr.isEmpty()) {

@@ -3,6 +3,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="views/css/list.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-k6RqeWeci5ZR/Lv4MR0sA0FfDOM7HGDFP6ZshkdP6IFOpP7D/RZQlF1cOBH8fA3O2C1V0Y2l9H9G4LJpD/LbZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <title>List of Employees</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
     <input type="text" name="recherche" placeholder="Rechercher par nom" value="${param.recherche}" />
     <input type="submit" value="Rechercher" />
   </form>
-
+  <a class="btn add" href="views/ajouterEmploye.jsp">Add New Employee</a>
   <form action="${pageContext.request.contextPath}/employes" method="get" class="filter-form">
     <label for="departement"> </label>
     <select name="departement" id="departement">
@@ -49,19 +50,22 @@
       <td>${employe.departement}</td>
       <td>${employe.poste}</td>
       <td>
-        <a class="btn" href="${pageContext.request.contextPath}/employes?action=modifier&id=${employe.id}">Update</a>
-        <form action="${pageContext.request.contextPath}/employes" method="post" style="display:inline;">
-          <input type="hidden" name="action" value="supprimer">
-          <input type="hidden" name="id" value="${employe.id}">
-          <input type="submit" value="Supprimer" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">
-        </form>
+        <div class="action-buttons">
+          <a class="btn update-btn" href="${pageContext.request.contextPath}/employes?action=modifier&id=${employe.id}">Update</a>
+          <form action="${pageContext.request.contextPath}/employes" method="post" style="display:inline;">
+            <input type="hidden" name="action" value="supprimer">
+            <input type="hidden" name="id" value="${employe.id}">
+            <input type="submit" value="Supprimer" class="btn delete-btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet employé ?');">
+          </form>
+        </div>
       </td>
+
     </tr>
   </c:forEach>
   </tbody>
 </table>
 
-<a class="btn" href="views/ajouterEmploye.jsp">Add New Employee</a>
+
 
 </body>
 </html>

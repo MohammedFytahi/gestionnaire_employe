@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="views/form.css">
+  <link rel="stylesheet" type="text/css" href="views/css/form.css">
   <title>Update Employee</title>
 </head>
 <body>
