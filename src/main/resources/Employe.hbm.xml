@@ -6,7 +6,7 @@
     <class name="com.example.gestionaire_employe.model.Employe" table="employe">
 
         <id name="id" column="id" type="int">
-            <generator class="native"/>
+            <generator class="identity"/>
         </id>
 
 

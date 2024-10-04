@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class EmployeDAO {
+public class EmployeDAO implements EmployeDAOInterface {
 
-
+@Override
     public List<Employe> getAllEmployes() {
         Transaction transaction = null;
         List<Employe> employes = null;
@@ -32,6 +32,8 @@ public class EmployeDAO {
         }
         return employes;
     }
+
+    @Override
     public void ajouterEmploye(Employe employe) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -46,6 +48,8 @@ public class EmployeDAO {
         }
     }
 
+    @Override
+
     public void mettreAJourEmploye(Employe employe) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -59,6 +63,8 @@ public class EmployeDAO {
             e.printStackTrace();
         }
     }
+
+    @Override
 
     public void supprimerEmploye(int id) {
         Transaction transaction = null;
@@ -76,6 +82,7 @@ public class EmployeDAO {
             e.printStackTrace();
         }
     }
+    @Override
 
     public Employe getEmployeById(int id) {
         Transaction transaction = null;
@@ -97,6 +104,7 @@ public class EmployeDAO {
         return employe;
     }
 
+    @Override
 
     public List<Employe> rechercherEmployesParNom(String nom) {
         Transaction transaction = null;
@@ -119,6 +127,7 @@ public class EmployeDAO {
         return employes;
     }
 
+    @Override
 
     public List<String> getAllDepartements() {
         Transaction transaction = null;
@@ -137,6 +146,7 @@ public class EmployeDAO {
         return departements;
     }
 
+    @Override
     public List<Employe> rechercherEmployesParNomEtDepartement(String nom, String departement) {
         Transaction transaction = null;
         List<Employe> employes = null;
@@ -162,6 +172,7 @@ public class EmployeDAO {
         return employes;
     }
 
+    @Override
     public List<Employe> getEmployesByDepartement(String departement) {
         Transaction transaction = null;
         List<Employe> employes = null;

@@ -1,7 +1,9 @@
 package com.example.gestionaire_employe.controller;
 
+import com.example.gestionaire_employe.dao.EmployeDAO;
 import com.example.gestionaire_employe.model.Employe;
 import com.example.gestionaire_employe.service.EmployeService;
+import com.example.gestionaire_employe.service.EmployeServiceInterface;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class EmployeServlet extends HttpServlet {
 
-    private final EmployeService employeService = new EmployeService();
+    private final EmployeServiceInterface employeService = new EmployeService(new EmployeDAO());
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
