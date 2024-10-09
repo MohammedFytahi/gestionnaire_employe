@@ -15,6 +15,8 @@
     <input type="submit" value="Rechercher" />
   </form>
   <a class="btn add" href="views/ajouterEmploye.jsp">Add New Employee</a>
+
+  <a class="btn add" href="views/ajouterDepartment.jsp">Add departement</a>
   <form action="${pageContext.request.contextPath}/employes" method="get" class="filter-form">
     <label for="departement"> </label>
     <select name="departement" id="departement">
