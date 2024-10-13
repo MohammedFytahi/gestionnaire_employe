@@ -75,7 +75,7 @@ public class Employe implements Serializable {
         this.poste = poste;
     }
 
-    // Méthode toString (optionnelle, utile pour le débogage)
+
     @Override
     public String toString() {
         return "Employe{" +
